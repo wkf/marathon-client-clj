@@ -4,13 +4,35 @@
             [clojure.java.io :as io]
             [marathon-client.support.rest :as rest]))
 
-(defn- read-routes []
-  (-> "routes.edn" io/resource slurp edn/read-string))
+(def routes
+  ["/"
+   {"ping" :ping
+    "logging" :logging
+    "help" :help
+    "metrics" :metrics
+    "v2/" {"apps" {"" :apps
+                   ["/" :app-id] {"" :app
+                                  "/restart" :restart-app
+                                  "/tasks" {"" :tasks
+                                            ["/" :task-id] :task}
+                                  "/versions" {"" :versions
+                                               ["/" :version] :version}}}
+           "groups" {"" :groups
+                     ["/" :group-id] :group}
+           "tasks" {"" :tasks
+                    "/delete" :delete-tasks}
+           "deployments" {"" :deployments
+                          ["/" :deployment-id] :deployment}
+           "events" :events
+           "eventSubscriptions" :event-subscriptions
+           "queue" :queue
+           "info" :info
+           "leader" :leader}}])
 
 (defn client
   [config]
   (-> config
-      (assoc :routes (read-routes))
+      (assoc :routes routes)
       (update-in [:options] merge {:as :json-string-keys
                                    :accept :json
                                    :content-type :json})))
