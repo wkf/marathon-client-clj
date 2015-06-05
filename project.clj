@@ -1,4 +1,4 @@
-(defproject marathon-client "0.1.2"
+(defproject marathon-client "0.1.3-SNAPSHOT"
   :description "A Marathon client written in Clojure."
   :url "https://github.com/wkf/marathon-client-clj"
   :license {:name "Eclipse Public License"
