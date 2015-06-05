@@ -15,14 +15,18 @@
                                    :accept :json
                                    :content-type :json})))
 
-(defn inspect-app [c id]
-  (rest/get c :app {:app-id id}))
+(defn inspect-app
+  ([c id] (inspect-app c id {}))
+  ([c id options] (rest/get c :app {:app-id id} options)))
 
-(defn create-app! [c spec]
-  (rest/post c :apps {} spec))
+(defn create-app!
+  ([c spec] (create-app! c spec {}))
+  ([c spec options] (rest/post c :apps {} spec options)))
 
-(defn update-app! [c id spec]
-  (rest/put c :app {:app-id id} spec))
+(defn update-app!
+  ([c id spec] (update-app! c id spec {}))
+  ([c id spec options] (rest/put c :app {:app-id id} spec options)))
 
-(defn destroy-app! [c id]
-  (rest/delete c :app {:app-id id}))
+(defn destroy-app!
+  ([c id] (destroy-app! c id {}))
+  ([c id options] (rest/delete c :app {:app-id id} options)))
