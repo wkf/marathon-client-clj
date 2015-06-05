@@ -2,7 +2,7 @@
 
 [![Build Status](https://secure.travis-ci.org/wkf/marathon-client-clj.svg)](http://travis-ci.org/wkf/marathon-client-clj)
 
-An incomplete Marathon remote API client written in Clojure.
+An incomplete [Marathon](https://github.com/mesosphere/marathon) remote API client written in Clojure.
 
 ## Installation
 
